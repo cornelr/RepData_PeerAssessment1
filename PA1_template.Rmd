@@ -15,8 +15,9 @@ list1 <- split(filedata$steps, filedata$date)
 totalsteps <- as.numeric(sapply(list1, sum))
 hist(totalsteps, col = "red", main = "Total number of steps taken each day", xlab = "Steps per day")
 
-stepsMean = mean(filedata$steps, na.rm = TRUE)
-stepsMedian = median(filedata$steps, na.rm = TRUE)
+stepsAgg <- aggregate(filedata$steps, list(filedata$date), sum)
+stepsMean = mean(stepsAgg[, 2], na.rm = TRUE)
+stepsMedian = median(stepsAgg[, 2], na.rm = TRUE)
 
 stepsMean
 stepsMedian

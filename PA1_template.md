@@ -24,14 +24,15 @@ hist(totalsteps, col = "red", main = "Total number of steps taken each day",
 
 ```r
 
-stepsMean = mean(filedata$steps, na.rm = TRUE)
-stepsMedian = median(filedata$steps, na.rm = TRUE)
+stepsAgg <- aggregate(filedata$steps, list(filedata$date), sum)
+stepsMean = mean(stepsAgg[, 2], na.rm = TRUE)
+stepsMedian = median(stepsAgg[, 2], na.rm = TRUE)
 
 stepsMean
 ```
 
 ```
-## [1] 37.38
+## [1] 10766
 ```
 
 ```r
@@ -39,7 +40,7 @@ stepsMedian
 ```
 
 ```
-## [1] 0
+## [1] 10765
 ```
 
 
